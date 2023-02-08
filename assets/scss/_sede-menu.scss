@@ -3,7 +3,7 @@
     position: -ms-device-fixed;
     position: fixed;
     top: 65px;
-    width: 85%;
+    width: 100%;
     height: 100vh;
     transform: translate(100%, 0);
     transition: all 300ms;
@@ -11,6 +11,11 @@
     overflow-x: hidden;
     padding: 10px;
     box-shadow: none;
+    
+    @media screen and (min-width: 768px) {
+        width: 400px;
+    }
+    
     
     & > div {
         display: flex;
@@ -20,7 +25,7 @@
     
     &.open {
         transform: translate(0, 0);
-        box-shadow:  0 0 24px 12px rgba(0, 0, 0, 0.24);
+        box-shadow: 0 0 24px 12px rgba(0, 0, 0, 0.24);
     }
     
     &__btn-group {

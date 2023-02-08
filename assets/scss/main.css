@@ -151,7 +151,7 @@ header .header__back__icon::after {
   position: -ms-device-fixed;
   position: fixed;
   top: 65px;
-  width: 85%;
+  width: 100%;
   height: 100vh;
   transform: translate(100%, 0);
   transition: all 300ms;
@@ -159,6 +159,11 @@ header .header__back__icon::after {
   overflow-x: hidden;
   padding: 10px;
   box-shadow: none;
+}
+@media screen and (min-width: 768px) {
+  .side-menu {
+    width: 400px;
+  }
 }
 .side-menu > div {
   display: flex;
