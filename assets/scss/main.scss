@@ -30,6 +30,10 @@ body {
         text-align: justify;
         transition: background-color 800ms;
         
+        .container {
+            padding: 0 20px;
+        }
+        
         &.disabled {
             background-color: #000000a1;
             user-select: none;
