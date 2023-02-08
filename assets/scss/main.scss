@@ -20,10 +20,19 @@
 body {
     height: 100vh;
     
-    & .main {
+    &.disabled {
+        overflow-y: hidden;
+    }
+    
+    .main {
         background-color: $body-color-light;
         height: 100%;
         text-align: justify;
+        transition: all 800ms;
+        
+        &.disabled {
+            background-color: #000000a1;
+        }
         
         &__content {
             overflow: hidden;

@@ -8,11 +8,13 @@ document.addEventListener("DOMContentLoaded", function () {
         menu_btn__burger.classList.toggle("open");
         if (menu_btn__burger.classList.contains("open")) {
             side_menu.classList.add("open");
-            document.body.style.overflowY = 'hidden';
+            document.body.classList.add('disabled');
+            document.body.querySelector('.main').classList.add('disabled');
         }
         else {
             side_menu.classList.remove("open");
-            document.body.style.overflowY = 'visible';
+            document.body.classList.remove('disabled');
+            document.body.querySelector('.main').classList.remove('disabled');
         }
 
     });
