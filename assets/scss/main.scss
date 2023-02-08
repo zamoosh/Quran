@@ -9,6 +9,10 @@
     src: url("../fonts/KFG.ttf");
 }
 
+* {
+    box-sizing: border-box;
+}
+
 *:not(i) {
     font-family: "KFG", sans-serif;
 }
@@ -19,5 +23,18 @@ body {
     & .main {
         background-color: $body-color-light;
         height: 100%;
+        text-align: justify;
+        
+        &__content {
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        p {
+            font-size: 25px;
+            line-height: 40px;
+            letter-spacing: -0.025em;
+            font-weight: bold;
+        }
     }
 }

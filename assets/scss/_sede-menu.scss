@@ -1,13 +1,65 @@
 .side-menu {
-    background-color: rgb(184, 219, 217);
+    background-color: $side-menu-color;
     position: -ms-device-fixed;
     position: fixed;
-    top: 0;
+    top: 65px;
+    width: 85%;
     height: 100vh;
-    width: 0;
-    transition: width 300ms;
+    transform: translate(100%, 0);
+    transition: all 300ms;
+    transition-timing-function: ease;
+    overflow-x: hidden;
+    padding: 10px;
+    
+    & > div {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
     
     &.open {
-        width: 100%;
+        transform: translate(0, 0);
+    }
+    
+    &__btn-group {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+        
+        & button {
+            outline: none;
+            border: none;
+            padding: 1px 10% 7px;
+            cursor: pointer;
+            background-color: $input-background-color-light;
+            transition: all 50ms;
+            font-size: 1.5rem;
+            font-weight: bold;
+            
+            &:hover, &.active {
+                background-color: #16191e29;
+            }
+        }
+        
+        & button:first-child {
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+        
+        & button:last-child {
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+        }
+    }
+    
+    &__tab-content {
+    
+        &__tab {
+            display: none;
+            
+            &.active {
+                display: block;
+            }
+        }
     }
 }
