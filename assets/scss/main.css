@@ -8,7 +8,7 @@ header {
   user-select: none;
 }
 header .header {
-  margin: 0 15%;
+  margin: 0 1.3rem;
   height: 100%;
   display: flex;
   justify-content: space-between;
