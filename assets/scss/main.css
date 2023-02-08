@@ -48,7 +48,6 @@ header {
   top: 0;
   height: 65px;
   background-color: #E2F0F1;
-  margin-bottom: 5px;
   box-shadow: 0 0 24px 12px rgba(0, 0, 0, 0.24);
   z-index: 2;
   user-select: none;
@@ -159,6 +158,7 @@ header .header__back__icon::after {
   transition-timing-function: ease;
   overflow-x: hidden;
   padding: 10px;
+  box-shadow: none;
 }
 .side-menu > div {
   display: flex;
@@ -167,6 +167,7 @@ header .header__back__icon::after {
 }
 .side-menu.open {
   transform: translate(0, 0);
+  box-shadow: 0 0 24px 12px rgba(0, 0, 0, 0.24);
 }
 .side-menu__btn-group {
   display: flex;
@@ -216,10 +217,18 @@ header .header__back__icon::after {
 body {
   height: 100vh;
 }
+body.disabled {
+  overflow-y: hidden;
+}
 body .main {
   background-color: #FDFDFD;
   height: 100%;
   text-align: justify;
+  transition: background-color 800ms;
+}
+body .main.disabled {
+  background-color: rgba(0, 0, 0, 0.631372549);
+  user-select: none;
 }
 body .main__content {
   overflow: hidden;

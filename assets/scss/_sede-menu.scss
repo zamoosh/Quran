@@ -10,6 +10,7 @@
     transition-timing-function: ease;
     overflow-x: hidden;
     padding: 10px;
+    box-shadow: none;
     
     & > div {
         display: flex;
@@ -19,6 +20,7 @@
     
     &.open {
         transform: translate(0, 0);
+        box-shadow:  0 0 24px 12px rgba(0, 0, 0, 0.24);
     }
     
     &__btn-group {
@@ -53,7 +55,7 @@
     }
     
     &__tab-content {
-    
+        
         &__tab {
             display: none;
             
