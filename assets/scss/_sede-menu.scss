@@ -1,0 +1,13 @@
+.side-menu {
+    background-color: rgb(184, 219, 217);
+    position: -ms-device-fixed;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 0;
+    transition: width 300ms;
+    
+    &.open {
+        width: 100%;
+    }
+}

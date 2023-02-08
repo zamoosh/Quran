@@ -1,0 +1,82 @@
+header {
+    position: sticky;
+    height: 65px;
+    background-color: $header-color-light;
+    margin-bottom: 5px;
+    box-shadow: 0 0 24px 12px rgba(0, 0, 0, 0.24);
+    z-index: 2;
+    
+    
+    & .header {
+        margin: 0 15%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        &__menu-btn {
+            height: 25px;
+            width: 20px;
+            cursor: pointer;
+            transition: all 200ms ease-in-out;
+            position: relative;
+            
+            &__burger {
+                position: absolute;
+                top: 0.5rem;
+                right: 0;
+                height: 4px;
+                border-radius: 2px;
+                width: 100%;
+                background: #000000;
+                transition: all 200ms ease-in-out;
+                
+                &.open {
+                    background-color: transparent;
+                    transform: rotate(90deg);
+                    
+                    &::before {
+                        transform: rotate(45deg) translate(3px, 7px);
+                    }
+                    
+                    &::after {
+                        transform: rotate(-45deg) translate(3px, -7px);
+                    }
+                }
+            }
+            
+            &__burger::before {
+                content: "";
+                position: absolute;
+                top: -7px;
+                right: 0;
+                height: 4px;
+                border-radius: 2px;
+                width: 100%;
+                background: #000000;
+                transition: all 200ms ease-in-out;
+            }
+            
+            &__burger::after {
+                content: "";
+                position: absolute;
+                top: 7px;
+                right: 0;
+                height: 4px;
+                border-radius: 2px;
+                width: 100%;
+                background: #000000;
+                transition: all 200ms ease-in-out;
+            }
+            
+        }
+        
+        &__surah {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+    }
+    
+}
+

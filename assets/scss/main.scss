@@ -1,9 +1,23 @@
-@import "_utils";
+@import "utils";
 @import "header";
 @import "body";
 @import "footer";
+@import "sede-menu";
+
+@font-face {
+    font-family: "KFG";
+    src: url("../fonts/KFG.ttf");
+}
+
+*:not(i) {
+    font-family: "KFG", sans-serif;
+}
 
 body {
-    background-color: $primary-color;
-    color: blue;
+    height: 100vh;
+    
+    & .main {
+        background-color: $body-color-light;
+        height: 100%;
+    }
 }
