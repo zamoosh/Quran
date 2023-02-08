@@ -224,10 +224,11 @@ body .main {
   background-color: #FDFDFD;
   height: 100%;
   text-align: justify;
-  transition: all 800ms;
+  transition: background-color 800ms;
 }
 body .main.disabled {
   background-color: rgba(0, 0, 0, 0.631372549);
+  user-select: none;
 }
 body .main__content {
   overflow: hidden;
