@@ -226,6 +226,9 @@ body .main {
   text-align: justify;
   transition: background-color 800ms;
 }
+body .main .container {
+  padding: 0 20px;
+}
 body .main.disabled {
   background-color: rgba(0, 0, 0, 0.631372549);
   user-select: none;
