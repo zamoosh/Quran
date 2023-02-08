@@ -1,0 +1,9 @@
+@import "_utils";
+@import "header";
+@import "body";
+@import "footer";
+
+body {
+    background-color: $primary-color;
+    color: blue;
+}

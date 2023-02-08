@@ -1,0 +1,36 @@
+@import "header.css";
+
+@font-face {
+    font-family: 'KFG';
+    src: url("../fonts/KFG.ttf");
+}
+
+*:not(i) {
+    font-family: 'KFG', sans-serif;
+}
+
+.main {
+    font-size: 1.3rem;
+}
+
+div.side-menu {
+    position: fixed;
+    height: 100%;
+    width: 0;
+    top: 0;
+    right: 0;
+    overflow-x: hidden;
+    background-color: #2c3135;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    z-index: 9;
+    transition: width 300ms;
+}
+
+div.side-menu div[role='button'] {
+    position: absolute;
+}
+
+div.side-menu.show {
+    width: 300px;
+    display: block;
+}
