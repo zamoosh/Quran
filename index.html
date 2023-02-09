@@ -134,6 +134,7 @@
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 let side_menu = new SideMenu(".side-menu");
+                side_menu.is_dragging = false;
 
                 side_menu.menu.addEventListener("mousedown", handleMouseDown);
                 side_menu.menu.addEventListener("mouseup", handleMouseUp);
@@ -145,30 +146,59 @@
 
                 function handleMouseDown(e) {
                     initialX = e.clientX;
-                    isDragging = true;
+                    side_menu.is_dragging = true;
                     document.addEventListener("mousemove", handleMouseMove);
                 }
 
                 function handleMouseMove(e) {
-                    if (!isDragging) {
+                    if (!side_menu.is_dragging) {
                         return;
                     }
 
                     var currentX = e.clientX;
                     var diffX = currentX - initialX;
-                    side_menu.menu.style.transform = "translateX(" + diffX + "px)";
+                    if (diffX < 0) {
+                        return;
+                    }
+                    var speed = diffX * 1.5;  // Increase or decrease this value to control the speed
+                    side_menu.menu.style.transform = "translateX(" + speed + "px)";
+
+                    if (speed >= 200) {
+                        console.log("close");
+                        side_menu.closeMenu();
+                    } else {
+                        console.log("no change");
+                        setTimeout(() => {
+                            if (!side_menu.is_closed)
+                                side_menu.menu.style.transform = "translateX(0)";
+                        }, 500);
+                        // side_menu.menu.style.transform = "translateX(0)";
+                    }
                 }
 
                 function handleMouseUp() {
-                    isDragging = false;
+                    console.log("up");
+                    side_menu.is_dragging = false;
                     document.removeEventListener("mousemove", handleMouseMove);
-                    side_menu.menu.style.transform = "translateX(0)";
+                    // side_menu.menu.style.transform = "translateX(0)";
                 }
 
+                // Touch events
                 function handleTouchStart(e) {
                     initialX = e.touches[0].clientX;
                     isDragging = true;
                     document.addEventListener("touchmove", handleTouchMove);
+                }
+
+                function handleTouchMove(e) {
+                    if (!isDragging) {
+                        return;
+                    }
+
+                    var currentX = e.touches[0].clientX;
+                    var diffX = currentX - initialX;
+                    var speed = diffX * 1.5;  // Increase or decrease this value to control the speed
+                    side_menu.menu.style.transform = "translateX(" + speed + "px)";
                 }
 
                 function handleTouchEnd() {
