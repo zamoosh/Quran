@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
         <title>Quran</title>
 
@@ -105,6 +105,9 @@
             </div>
         </div>
 
+        <!-- hammer JS -->
+        <script src="./assets/js/hammer.min.js"></script>
+
         <!-- side menu -->
         <script src="./assets/js/side_menu.js"></script>
 
@@ -128,6 +131,24 @@
                         tab_panel.classList.toggle("show");
                         tab_panel.classList.toggle("active");
                     });
+                });
+
+                let hammer = new Hammer(side_menu.menu);
+                hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+                hammer.on('pan', function (e) {
+                    if (e.deltaX > 0) {
+                        console.log(e.deltaX);
+                        // let translateX = Number(side_menu.menu.style.transform.match(/(\d+)/));
+                        let current_left = side_menu.menu.getBoundingClientRect().left;
+                        let translateX = current_left + e.deltaX;
+                        side_menu.menu.style.transform = `translateX(${translateX}px)`;
+                        if (translateX > 150) {
+                            // hammer.removeEventListener('pan');
+                            side_menu.toggleMenu();
+                        } else {
+                            // side_menu.menu.style.transform = `translateX(100%)`;
+                        }
+                    }
                 });
             });
         </script>
