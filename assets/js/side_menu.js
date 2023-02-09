@@ -29,6 +29,7 @@ class SideMenu {
 
     toggleMenu() {
         this.menu_btn__burger.classList.toggle("open");
+        this.menu.style.transform = null;
         if (this.menu_btn__burger.classList.contains("open")) {
             this.menu.classList.add("open");
             document.body.classList.add("disabled");
