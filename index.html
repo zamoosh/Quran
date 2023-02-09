@@ -135,6 +135,48 @@
             document.addEventListener("DOMContentLoaded", function () {
                 let side_menu = new SideMenu(".side-menu");
 
+                side_menu.menu.addEventListener("mousedown", handleMouseDown);
+                side_menu.menu.addEventListener("mouseup", handleMouseUp);
+                side_menu.menu.addEventListener("touchstart", handleTouchStart);
+                side_menu.menu.addEventListener("touchend", handleTouchEnd);
+
+                var initialX;
+                var isDragging = false;
+
+                function handleMouseDown(e) {
+                    initialX = e.clientX;
+                    isDragging = true;
+                    document.addEventListener("mousemove", handleMouseMove);
+                }
+
+                function handleMouseMove(e) {
+                    if (!isDragging) {
+                        return;
+                    }
+
+                    var currentX = e.clientX;
+                    var diffX = currentX - initialX;
+                    side_menu.menu.style.transform = "translateX(" + diffX + "px)";
+                }
+
+                function handleMouseUp() {
+                    isDragging = false;
+                    document.removeEventListener("mousemove", handleMouseMove);
+                    side_menu.menu.style.transform = "translateX(0)";
+                }
+
+                function handleTouchStart(e) {
+                    initialX = e.touches[0].clientX;
+                    isDragging = true;
+                    document.addEventListener("touchmove", handleTouchMove);
+                }
+
+                function handleTouchEnd() {
+                    isDragging = false;
+                    document.removeEventListener("touchmove", handleTouchMove);
+                    side_menu.menu.style.transform = "translateX(0)";
+                }
+
                 let tab_buttons = document.querySelectorAll(".side-menu__btn-group button");
                 tab_buttons.forEach(function (btn) {
                     btn.addEventListener("click", function () {
