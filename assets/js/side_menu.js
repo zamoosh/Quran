@@ -94,10 +94,8 @@ class SideMenu {
             obj.menu.style.transform = "translateX(" + speed + "px)";
 
             if (speed >= 250) {
-                console.log("close");
                 obj.closeMenu();
             } else {
-                console.log("no change");
                 setTimeout(() => {
                     if (!obj.is_closed)
                         obj.menu.style.transform = "translateX(0)";
@@ -135,7 +133,7 @@ class SideMenu {
             if (diffX < 0) {
                 return;
             }
-            let speed = diffX * 1.5;  // Increase or decrease this value to control the speed
+            let speed = diffX * 0.5;  // Increase or decrease this value to control the speed
             obj.menu.style.transform = "translateX(" + speed + "px)";
             if (speed >= 250) {
                 obj.closeMenu();
@@ -144,7 +142,6 @@ class SideMenu {
                     if (!obj.is_closed)
                         obj.menu.style.transform = "translateX(0)";
                 }, 500);
-                // obj.menu.style.transform = "translateX(0)";
             }
         }
     }
