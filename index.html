@@ -6,6 +6,19 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <!--<meta name="description" content="The Quran is the holy book of Islam and a source of guidance for over 1 billion Muslims around the world. Explore its teachings and history here.">
+        <meta name="keywords" content="Quran, Islam, holy book, teachings, history">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="[Your Website Name]">
+        <link rel="canonical" href="https://www.yourwebsite.com/quran/">
+        <meta property="og:title" content="The Quran: Explore its Teachings and History">
+        <meta property="og:description" content="The Quran is the holy book of Islam and a source of guidance for over 1 billion Muslims around the world. Explore its teachings and history here.">
+        <meta property="og:image" content="https://www.yourwebsite.com/quran/cover.jpg">
+        <meta property="og:url" content="https://www.yourwebsite.com/quran/">
+        <meta property="og:type" content="website">
+        <meta property="og:locale" content="en_US">
+        <meta property="og:site_name" content="[Your Website Name]">-->
+
         <title>Quran</title>
 
         <!--  favicon  -->
@@ -54,7 +67,9 @@
                     </span>
                 </div>
                 <div role="button" class="footer__player">
-                    <img src="./assets/icons/svg/play-circle-fill.svg" alt="">
+                    <img data-bs-stop="./assets/icons/svg/pause-circle-fill.svg"
+                         src="./assets/icons/svg/play-circle-fill.svg"
+                         alt="">
                 </div>
                 <div role="button" class="footer__singer">
                     مداح
@@ -141,8 +156,8 @@
                 side_menu.menu.addEventListener("touchstart", handleTouchStart);
                 side_menu.menu.addEventListener("touchend", handleTouchEnd);
 
-                var initialX;
-                var isDragging = false;
+                let initialX;
+                let isDragging = false;
 
                 function handleMouseDown(e) {
                     initialX = e.clientX;
@@ -155,15 +170,15 @@
                         return;
                     }
 
-                    var currentX = e.clientX;
-                    var diffX = currentX - initialX;
+                    let currentX = e.clientX;
+                    let diffX = currentX - initialX;
                     if (diffX < 0) {
                         return;
                     }
-                    var speed = diffX * 1.5;  // Increase or decrease this value to control the speed
+                    let speed = diffX * 1.5;  // Increase or decrease this value to control the speed
                     side_menu.menu.style.transform = "translateX(" + speed + "px)";
 
-                    if (speed >= 200) {
+                    if (speed >= 250) {
                         console.log("close");
                         side_menu.closeMenu();
                     } else {
@@ -195,9 +210,9 @@
                         return;
                     }
 
-                    var currentX = e.touches[0].clientX;
-                    var diffX = currentX - initialX;
-                    var speed = diffX * 1.5;  // Increase or decrease this value to control the speed
+                    let currentX = e.touches[0].clientX;
+                    let diffX = currentX - initialX;
+                    let speed = diffX * 1.5;  // Increase or decrease this value to control the speed
                     side_menu.menu.style.transform = "translateX(" + speed + "px)";
                 }
 
