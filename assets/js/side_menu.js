@@ -3,8 +3,8 @@ class SideMenu {
     menu;
     menu_btn;
     menu_btn__burger;
-    is_dragging = false;
     is_closed = true;
+    is_dragging = false;
     initial_x = null;
 
 
@@ -15,8 +15,8 @@ class SideMenu {
         SideMenu.object = this;
 
         this.clickableMenuBtn();
-        // this.menu.addEventListener("mousedown", this.handleMouseDown);
-        // this.menu.addEventListener("mouseup", this.handleMouseUp);
+        this.mouse_drag_handling();
+        this.touch_drag_handling();
     }
 
     clickableMenuBtn() {
@@ -45,6 +45,7 @@ class SideMenu {
             document.body.querySelector(".main").classList.add("disabled");
         } else {
             this.menu.classList.remove("open");
+            this.is_closed = true;
             document.body.classList.remove("disabled");
             document.body.querySelector(".main").classList.remove("disabled");
         }
@@ -57,35 +58,94 @@ class SideMenu {
         this.is_closed = true;
         document.body.classList.remove("disabled");
         document.body.querySelector(".main").classList.remove("disabled");
-        this.menu.style.transform = 'translateX(100%)';
+        this.menu.style.transform = "translateX(100%)";
         this.menu.style.transform = null;
     }
 
-    handleMouseDown(e) {
-        SideMenu.object.initial_x = e.clientX;
-        SideMenu.object.is_dragging = true;
-        document.addEventListener("mousemove", this.handleMouseMove);
-    }
+    // mouse dragging
+    mouse_drag_handling() {
+        let obj = this;
+        this.menu.addEventListener("mousedown", handleMouseDown);
+        this.menu.addEventListener("mouseup", handleMouseUp);
 
-    handleMouseUp() {
-        SideMenu.object.is_dragging = false;
-        document.removeEventListener("mousemove", this.handleMouseMove);
-        SideMenu.object.menu.style.transform = "translateX(0)";
-    }
-
-    handleMouseMove(e) {
-        if (!this.is_dragging) {
-            return;
+        function handleMouseDown(e) {
+            obj.initial_x = e.clientX;
+            obj.is_dragging = true;
+            document.addEventListener("mousemove", handleMouseMove);
         }
 
-        var currentX = e.clientX;
-        var diffX = currentX - this.initial_x;
-        var speed = diffX * 1.5;  // Increase or decrease this value to control the speed
-        this.menu.style.transform = "translateX(" + speed + "px)";
+        function handleMouseUp() {
+            obj.is_dragging = false;
+            document.removeEventListener("mousemove", handleMouseMove);
+            // side_menu.menu.style.transform = "translateX(0)";
+        }
 
-        if (diffX >= 100) {
-            console.log("close");
-            this.menu.closeMenu();
+        function handleMouseMove(e) {
+            if (!obj.is_dragging) {
+                return;
+            }
+
+            let currentX = e.clientX;
+            let diffX = currentX - obj.initial_x;
+            if (diffX < 0) {
+                return;
+            }
+            let speed = diffX * 1.5;  // Increase or decrease this value to control the speed
+            obj.menu.style.transform = "translateX(" + speed + "px)";
+
+            if (speed >= 250) {
+                console.log("close");
+                obj.closeMenu();
+            } else {
+                console.log("no change");
+                setTimeout(() => {
+                    if (!obj.is_closed)
+                        obj.menu.style.transform = "translateX(0)";
+                }, 500);
+                // obj.menu.style.transform = "translateX(0)";
+            }
+        }
+
+    }
+
+    // touch dragging
+    touch_drag_handling() {
+        let obj = this;
+        this.menu.addEventListener("touchstart", handleTouchStart);
+        this.menu.addEventListener("touchend", handleTouchEnd);
+
+        function handleTouchStart(e) {
+            obj.initial_x = e.touches[0].clientX;
+            obj.is_dragging = true;
+            document.addEventListener("touchmove", handleTouchMove);
+        }
+
+        function handleTouchEnd() {
+            obj.is_dragging = false;
+            document.removeEventListener("touchmove", handleTouchMove);
+        }
+
+        function handleTouchMove(e) {
+            if (!obj.is_dragging) {
+                return;
+            }
+
+            let currentX = e.touches[0].clientX;
+            let diffX = currentX - obj.initial_x;
+            if (diffX < 0) {
+                return;
+            }
+            let speed = diffX * 1.5;  // Increase or decrease this value to control the speed
+            obj.menu.style.transform = "translateX(" + speed + "px)";
+            if (speed >= 250) {
+                obj.closeMenu();
+            } else {
+                setTimeout(() => {
+                    if (!obj.is_closed)
+                        obj.menu.style.transform = "translateX(0)";
+                }, 500);
+                // obj.menu.style.transform = "translateX(0)";
+            }
         }
     }
 }
