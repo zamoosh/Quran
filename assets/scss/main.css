@@ -155,6 +155,17 @@ footer {
   z-index: 2;
   user-select: none;
 }
+footer progress {
+  position: absolute;
+  top: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  height: 4px;
+  background-color: rgba(30, 144, 255, 0.2901960784);
+  width: 100%;
+  direction: ltr;
+}
 footer .footer {
   margin: 0 1.3rem;
   height: 100%;
@@ -171,7 +182,7 @@ footer .footer * {
   backface-visibility: hidden;
 }
 footer .footer *:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 footer .footer__settings {
   height: 30px;
@@ -192,13 +203,23 @@ footer .footer__speed * {
 footer .footer__player {
   height: 45px;
   width: 45px;
+  position: relative;
 }
-footer .footer__player.play * {
-  filter: hue-rotate(75deg);
+footer .footer__player img {
+  opacity: 0;
+  position: absolute;
+  transition: opacity 75ms;
+  visibility: hidden;
 }
-footer .footer__player * {
+footer .footer__player img.active {
   width: 100%;
   height: 100%;
+  opacity: 1;
+  position: static;
+  visibility: visible;
+}
+footer .footer__player img.pause {
+  filter: hue-rotate(75deg);
 }
 footer .footer__singer {
   height: 30px;

@@ -7,6 +7,17 @@ footer {
     z-index: 2;
     user-select: none;
     
+    progress {
+        position: absolute;
+        top: 0;
+        padding: 0;
+        border: none;
+        outline: none;
+        height: 4px;
+        background-color: #1e90ff4a;
+        width: 100%;
+        direction: ltr;
+    }
     
     & .footer {
         margin: 0 1.3rem;
@@ -24,7 +35,7 @@ footer {
             backface-visibility: hidden;
             
             &:hover {
-                transform: scale(1.1);
+                transform: scale(1.05);
             }
         }
         
@@ -40,8 +51,6 @@ footer {
         &__speed {
             width: 30px;
             height: 30px;
-            //display: flex;
-            //align-items: center;
             
             & * {
                 display: block;
@@ -53,17 +62,25 @@ footer {
         &__player {
             height: 45px;
             width: 45px;
+            position: relative;
             
-            &.play {
-                
-                & * {
-                    filter: hue-rotate(75deg);
-                }
+            img {
+                opacity: 0;
+                position: absolute;
+                transition: opacity 75ms;
+                visibility: hidden;
             }
             
-            & * {
+            img.active {
                 width: 100%;
                 height: 100%;
+                opacity: 1;
+                position: static;
+                visibility: visible;
+            }
+            
+            img.pause {
+                filter: hue-rotate(75deg);
             }
         }
         

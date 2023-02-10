@@ -57,6 +57,7 @@
         </div>
 
         <footer>
+            <progress id="progress" value="0" max="0"></progress>
             <div class="footer">
                 <div role="button" class="footer__settings">
                     <img src="./assets/icons/svg/sliders2.svg" alt="">
@@ -67,21 +68,23 @@
                     </span>
                 </div>
                 <div role="button" class="footer__player">
-                    <img data-bs-stop="./assets/icons/svg/pause-circle-fill.svg"
-                         src="./assets/icons/svg/play-circle-fill.svg"
-                         alt="">
+                    <div id="player">
+                        <img class="play active" src="./assets/icons/svg/play-circle-fill.svg"
+                             alt="play icon">
+                        <img class="pause" src="./assets/icons/svg/pause-circle-fill.svg"
+                             alt="pause icon">
+                    </div>
+                    <audio>
+                        <source src="./assets/audio/ziarat-ashoura_meytham.mp3" type="audio/mp3"/>
+                        <source src="./assets/audio/ziarat-ashoura_meytham.mp3" type="audio/ogg"/>
+                    </audio>
                 </div>
                 <div role="button" class="footer__singer">
                     مداح
                 </div>
                 <div role="button" class="footer__more">
-                    <img src="./assets/icons/svg/three-dots-vertical.svg" alt="">
+                    <img src="./assets/icons/svg/three-dots-vertical.svg" alt="more options">
                 </div>
-
-                <audio id="player" controls>
-                    <source src="./assets/audio/ziarat-ashoura_meytham.mp3" type="audio/mp3"/>
-                    <source src="./assets/audio/ziarat-ashoura_meytham.mp3" type="audio/ogg"/>
-                </audio>
             </div>
         </footer>
 
@@ -173,10 +176,14 @@
         <!-- side menu -->
         <script src="./assets/js/side_menu.js"></script>
 
+        <!-- player -->
+        <script src="./assets/js/player.js"></script>
+
         <!-- page js -->
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 let side_menu = new SideMenu(".side-menu");
+                let player = new Player("player");
 
                 let tab_buttons = document.querySelectorAll(".side-menu__btn-group button");
                 tab_buttons.forEach(function (btn) {
