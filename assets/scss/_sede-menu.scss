@@ -51,20 +51,29 @@
             }
         }
         
+        & button {
+            border: 1px solid #bbb;
+            border-top: none;
+            border-bottom: none;
+        }
+        
         & button:first-child {
             border-top-right-radius: 6px;
             border-bottom-right-radius: 6px;
+            border: none;
         }
         
         & button:last-child {
             border-top-left-radius: 6px;
             border-bottom-left-radius: 6px;
+            border: none;
         }
     }
     
     &__tab-content {
         overflow-y: scroll;
         height: 100%;
+        user-select: none;
         
         &__tab {
             display: none;
