@@ -177,12 +177,9 @@ footer .footer * {
   user-select: none;
   cursor: pointer;
   font-size: 1.2rem;
-  transition: transform 300ms;
+  transition: transform 100ms;
   transform: scale(1);
   backface-visibility: hidden;
-}
-footer .footer *:hover {
-  transform: scale(1.05);
 }
 footer .footer__settings {
   height: 30px;
@@ -191,14 +188,44 @@ footer .footer__settings {
 footer .footer__settings * {
   width: 100%;
 }
-footer .footer__speed {
+footer .footer__speed-toolbar {
   width: 30px;
   height: 30px;
 }
-footer .footer__speed * {
-  display: block;
-  width: 100%;
+footer .footer__speed-toolbar.open button {
+  opacity: 1;
+  transition: all 50ms;
+  display: flex;
+}
+footer .footer__speed-toolbar.open button.open {
+  background-color: #E2F0F1;
+  border-radius: 100px;
+}
+footer .footer__speed-toolbar.open button.active {
+  background-color: #b4924d;
+  color: white;
+}
+footer .footer__speed-toolbar .footer__speed-selected {
   height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+footer .footer__speed-toolbar button {
+  font-weight: bold;
+  width: 67px;
+  height: 24px;
+  opacity: 0;
+  display: none;
+  border: 0;
+  padding: 2px 0 0 0;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transition: all 50ms;
+  background-color: transparent;
 }
 footer .footer__player {
   height: 45px;
