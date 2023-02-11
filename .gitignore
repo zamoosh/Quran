@@ -3,3 +3,4 @@ node/
 .vscode/
 *.mp3
 a/
+automation.sh
