@@ -4,15 +4,20 @@ class Player {
     pause_logo;
     audio;
     playing = false;
+    progress_bar;
 
     constructor(selector) {
         this.player = document.getElementById(selector);
-        this.play_logo = this.player.querySelector("img.play");
-        this.pause_logo = this.player.querySelector("img.pause");
+        let logos = this.player.querySelectorAll("img");
+        this.play_logo = logos[0];
+        this.pause_logo = logos[1];
         this.audio = document.querySelector("audio");
-        console.log(this.audio.duration);
+        this.progress_bar = document.querySelector("progress");
+        // console.log(this.audio.duration);
+        // console.log(this.progress_bar);
 
         this.makePlayable();
+        this.updateProgressBar();
     }
 
     makePlayable() {
@@ -36,6 +41,17 @@ class Player {
         function toggleShape(obj) {
             obj.play_logo.classList.toggle("active");
             obj.pause_logo.classList.toggle("active");
+        }
+    }
+
+    updateProgressBar() {
+        let obj = this;
+        let current_time;
+        obj.audio.addEventListener("timeupdate", updateProgressBar);
+
+        function updateProgressBar() {
+            current_time = Math.ceil(obj.audio.currentTime);
+            obj.progress_bar.value = (current_time / obj.audio.duration) * 100;
         }
     }
 }
