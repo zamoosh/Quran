@@ -7,20 +7,25 @@ class Player {
     progress_bar;
     speed_toolbar;
     speed_selected;
+    footer_settings;
+    footer_settings_logo;
 
     constructor(selector) {
         this.player = document.getElementById(selector);
-        let logos = this.player.querySelectorAll("img");
-        this.play_logo = logos[1];
-        this.pause_logo = logos[2];
+        let logos = this.player.querySelectorAll("img.logo");
+        this.play_logo = logos[0];
+        this.pause_logo = logos[1];
         this.audio = document.querySelector("audio");
         this.progress_bar = document.querySelector("progress");
         this.speed_toolbar = this.player.querySelector(".footer__speed-toolbar");
-        this.speed_selected = this.speed_toolbar.querySelector('.footer__speed-selected');
+        this.speed_selected = this.speed_toolbar.querySelector(".footer__speed-selected");
+        this.footer_settings = document.querySelector(".footer__settings");
+        this.footer_settings_logo = this.footer_settings.querySelector(".footer__settings");
 
         this.makePlayable();
         this.updateProgressBar();
         this.speedControl();
+        this.fontControl();
     }
 
     makePlayable() {
@@ -60,38 +65,81 @@ class Player {
     }
 
     speedControl() {
-        this.speed_toolbar.addEventListener('click', this.toggleSpeeds.bind(this));
+        this.speed_toolbar.addEventListener("click", this.toggleSpeeds.bind(this));
     }
 
     toggleSpeeds(e) {
         let btn_d = 36;
         let d = 45;
-        let buttons = this.speed_toolbar.querySelectorAll('button');
-        if(e.target.tagName === 'DIV')
-            this.speed_toolbar.classList.toggle('open');
-        if (this.speed_toolbar.classList.contains('open')) {
+        let buttons = this.speed_toolbar.querySelectorAll("button");
+        if (e.target.tagName === "DIV")
+            this.speed_toolbar.classList.toggle("open");
+        if (this.speed_toolbar.classList.contains("open")) {
             buttons.forEach((btn, index) => {
-                btn.classList.add('open');
+                btn.classList.add("open");
                 btn.style.transform = `translate(18px, -${(index * btn_d) + d}px)`;
-                btn.style.transitionDelay = (index * 100) / 2 + 'ms';
+                // btn.style.transitionDelay = (index * 100) / 2 + 'ms';
             });
         } else {
             buttons.forEach(btn => {
-                btn.classList.remove('open');
+                btn.classList.remove("open");
             });
         }
         buttons.forEach(btn => {
-            btn.addEventListener('click', this.speedSet.bind(this));
+            btn.addEventListener("click", this.speedSet.bind(this));
         });
     }
 
     speedSet(e) {
-        let buttons = this.speed_toolbar.querySelectorAll('button');
+        let buttons = this.speed_toolbar.querySelectorAll("button");
         buttons.forEach(btn => {
-            btn.classList.remove('active');
+            btn.classList.remove("active");
         });
-        e.target.classList.add('active');
+        e.target.classList.add("active");
         this.speed_selected.innerHTML = e.target.innerHTML;
         this.audio.playbackRate = e.target.value;
+    }
+
+
+    fontControl() {
+        this.footer_settings.addEventListener("click", this.toggleSettings.bind(this));
+        let buttons = this.footer_settings.querySelectorAll("button.font");
+        buttons.forEach(btn => {
+            btn.addEventListener("click", this.changeFontSize);
+        });
+    }
+
+    toggleSettings(e) {
+        let btn_d = 36;
+        let d = 52;
+        let buttons = this.footer_settings.querySelectorAll("button");
+        if (e.target.tagName === "DIV")
+            this.footer_settings.classList.toggle("open");
+        if (this.footer_settings.classList.contains("open")) {
+            buttons.forEach((btn, index) => {
+                btn.classList.add("open");
+                btn.style.transform = `translate(-2px, -${(index * btn_d) + d}px)`;
+            });
+        } else {
+            buttons.forEach(btn => {
+                btn.classList.remove("open");
+            });
+        }
+    }
+
+    changeFontSize(e) {
+        let btn = e.target;
+        let elements = document.querySelectorAll(".main p");
+        if (btn.value === "plus") {
+            elements.forEach(element => {
+                let size = parseInt(window.getComputedStyle(element).fontSize);
+                element.style.fontSize = size + 2 + "px";
+            });
+        } else {
+            elements.forEach(element => {
+                let size = parseInt(window.getComputedStyle(element).fontSize);
+                element.style.fontSize = size - 2 + "px";
+            });
+        }
     }
 }

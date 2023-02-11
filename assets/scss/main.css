@@ -184,9 +184,43 @@ footer .footer * {
 footer .footer__settings {
   height: 30px;
   width: 30px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-footer .footer__settings * {
+footer .footer__settings img {
+  z-index: -5;
+}
+footer .footer__settings > div {
+  display: flex;
+  background-image: url("../icons/svg/Adark.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 26px;
+  height: 23px;
+}
+footer .footer__settings.open button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+footer .footer__settings img {
   width: 100%;
+  height: 100%;
+}
+footer .footer__settings button {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  border-radius: 100px;
+  background-color: #E2F0F1;
+  border: none;
+  display: none;
+}
+footer .footer__settings button.dark-theme {
+  background-color: #b4924d;
 }
 footer .footer__speed-toolbar {
   width: 30px;
@@ -208,8 +242,9 @@ footer .footer__speed-toolbar.open button.active {
 footer .footer__speed-toolbar .footer__speed-selected {
   height: 100%;
   width: 100%;
+  font-weight: bold;
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: center;
   position: absolute;
 }
@@ -251,11 +286,14 @@ footer .footer__player img.pause {
 footer .footer__singer {
   height: 30px;
   width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 footer .footer__singer * {
-  display: block;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  padding-top: 1px;
 }
 footer .footer__more {
   height: 30px;

@@ -60,16 +60,21 @@
             <progress id="progress" value="0" max="100"></progress>
             <div class="footer" id="player">
                 <div role="button" class="footer__settings">
-                    <img src="./assets/icons/svg/sliders2.svg" alt="">
-                    <button class="font-plus">
-                        <img src="./assets/icons/svg/A-.svg" alt="">
+                    <div>
+                        <!-- font setting image, in the background -->
+                    </div>
+                    <button class="dark-theme">
+                        <img src="./assets/icons/svg/moon.svg" alt="dark theme">
                     </button>
-                    <button class="font-decrease">
-                        <img src="./assets/icons/svg/A+.svg" alt="">
+                    <button class="light-theme">
+                        <img src="./assets/icons/svg/sun.svg" alt="light theme">
                     </button>
-                    <button value="1.5" class="">1.50x</button>
-                    <button value="2" class="">2.00x</button>
-                    <button value="2.5" class="">2.50x</button>
+                    <button value="plus" class="font">
+                        <img src="./assets/icons/svg/A+.svg" alt="increase font size">
+                    </button>
+                    <button value="minus" class="font">
+                        <img src="./assets/icons/svg/A-.svg" alt="decrease font size">
+                    </button>
                 </div>
                 <div role="button" class="footer__speed-toolbar">
                     <div class="footer__speed-selected">
@@ -82,9 +87,9 @@
                 </div>
                 <div role="button" class="footer__player">
                     <div>
-                        <img class="play active" src="./assets/icons/svg/play-circle-fill.svg"
+                        <img class="play active logo" src="./assets/icons/svg/play-circle-fill.svg"
                              alt="play icon">
-                        <img class="pause" src="./assets/icons/svg/pause-circle-fill.svg"
+                        <img class="pause logo" src="./assets/icons/svg/pause-circle-fill.svg"
                              alt="pause icon">
                     </div>
                     <audio>
@@ -93,7 +98,9 @@
                     </audio>
                 </div>
                 <div role="button" class="footer__singer">
-                    مداح
+                    <div>
+                        مداح
+                    </div>
                 </div>
                 <div role="button" class="footer__more">
                     <img src="./assets/icons/svg/three-dots-vertical.svg" alt="more options">
