@@ -145,8 +145,19 @@ class Player {
 
     themeChange() {
         let btn = this.footer_settings.querySelector("button.theme");
+        let sepia = this.footer_settings.querySelector("button.sepia");
         btn.addEventListener("click", function () {
             document.body.classList.toggle("dark");
+            document.body.classList.remove("sepia");
+            btn.classList.add('active');
+            sepia.classList.remove('active');
+        });
+
+        sepia.addEventListener("click", function () {
+            document.body.classList.toggle("sepia");
+            document.body.classList.remove("dark");
+            btn.classList.remove('active');
+            sepia.classList.add('active');
         });
     }
 }
