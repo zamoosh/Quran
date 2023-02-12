@@ -26,6 +26,7 @@ class Player {
         this.updateProgressBar();
         this.speedControl();
         this.fontControl();
+        this.themeChange();
     }
 
     makePlayable() {
@@ -68,12 +69,11 @@ class Player {
         this.speed_toolbar.addEventListener("click", this.toggleSpeeds.bind(this));
     }
 
-    toggleSpeeds(e) {
+    toggleSpeeds() {
         let btn_d = 36;
         let d = 45;
         let buttons = this.speed_toolbar.querySelectorAll("button");
-        if (e.target.tagName === "DIV")
-            this.speed_toolbar.classList.toggle("open");
+        this.speed_toolbar.classList.toggle("open");
         if (this.speed_toolbar.classList.contains("open")) {
             buttons.forEach((btn, index) => {
                 btn.classList.add("open");
@@ -113,7 +113,7 @@ class Player {
         let btn_d = 36;
         let d = 52;
         let buttons = this.footer_settings.querySelectorAll("button");
-        if (e.target.tagName === "DIV")
+        if (e.target.tagName === "DIV" || e.target.tagName === "IMG")
             this.footer_settings.classList.toggle("open");
         if (this.footer_settings.classList.contains("open")) {
             buttons.forEach((btn, index) => {
@@ -141,5 +141,12 @@ class Player {
                 element.style.fontSize = size - 2 + "px";
             });
         }
+    }
+
+    themeChange() {
+        let btn = this.footer_settings.querySelector("button.theme");
+        btn.addEventListener("click", function () {
+            document.body.classList.toggle("dark");
+        });
     }
 }

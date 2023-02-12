@@ -1,11 +1,13 @@
 footer {
-    position: sticky;
+    position: fixed;
+    width: 100%;
     bottom: 0;
     height: 65px;
     background-color: $header-color-light;
     box-shadow: 0 0 24px 12px rgba(0, 0, 0, 0.24);
     z-index: 2;
     user-select: none;
+    transition: background-color 300ms;
     
     progress {
         position: absolute;
@@ -51,18 +53,21 @@ footer {
                 z-index: -5;
             }
             
+            // first div in settings
             & > div {
                 display: flex;
-                background-image: url("../icons/svg/Adark.svg");
-                background-repeat: no-repeat;
-                background-size: cover;
                 width: 26px;
                 height: 23px;
+                
+                .dark {
+                    display: none;
+                }
             }
             
             &.open {
+                //https://codepen.io/sosuke/pen/Pjoqqp
                 //invert(100%) sepia(0%) saturate(0%) hue-rotate(112deg) brightness(103%) contrast(104%)
-                & button {
+                & button.open {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -86,8 +91,17 @@ footer {
                 border: none;
                 display: none;
                 
-                &.dark-theme {
+                &.theme {
                     background-color: #b4924d;
+                    
+                    * {
+                        transition: opacity 100ms;
+                    }
+                    
+                    & > .light {
+                        opacity: 0;
+                        width: 0;
+                    }
                 }
             }
         }

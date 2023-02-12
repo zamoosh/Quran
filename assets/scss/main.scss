@@ -3,6 +3,7 @@
 @import "body";
 @import "footer";
 @import "sede-menu";
+@import 'dark';
 
 @font-face {
     font-family: "KFG";
@@ -26,7 +27,7 @@
 }
 
 body {
-    height: 100vh;
+    color: $text-light;
     
     &.disabled {
         overflow-y: hidden;
@@ -34,9 +35,8 @@ body {
     
     .main {
         background-color: $body-color-light;
-        height: 100%;
         text-align: justify;
-        transition: background-color 800ms;
+        transition: background-color 300ms;
         
         .container {
             padding: 0 20px;
@@ -48,8 +48,8 @@ body {
         }
         
         &__content {
-            overflow: hidden;
             height: 100%;
+            padding: 75px 0;
             
             & * {
                 font-family: 'KFG', sans-serif;
@@ -61,6 +61,7 @@ body {
             line-height: 40px;
             letter-spacing: -0.025em;
             font-weight: bold;
+            margin: 0;
         }
     }
 }
