@@ -44,13 +44,15 @@
   }
 }
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100%;
   height: 65px;
   background-color: #E2F0F1;
   box-shadow: 0 0 24px 12px rgba(0, 0, 0, 0.24);
   z-index: 2;
   user-select: none;
+  transition: background-color 300ms;
 }
 header .header {
   margin: 0 1.3rem;
@@ -73,7 +75,7 @@ header .header__menu-btn__burger {
   height: 4px;
   border-radius: 2px;
   width: 100%;
-  background: #000000;
+  background: #0c1f34;
   transition: all 200ms ease-in-out;
 }
 header .header__menu-btn__burger.open {
@@ -94,7 +96,7 @@ header .header__menu-btn__burger::before {
   height: 4px;
   border-radius: 2px;
   width: 100%;
-  background: #000000;
+  background: #0c1f34;
   transition: all 200ms ease-in-out;
 }
 header .header__menu-btn__burger::after {
@@ -105,7 +107,7 @@ header .header__menu-btn__burger::after {
   height: 4px;
   border-radius: 2px;
   width: 100%;
-  background: #000000;
+  background: #0c1f34;
   transition: all 200ms ease-in-out;
 }
 header .header__surah {
@@ -132,7 +134,7 @@ header .header__back__icon::before {
   display: block;
   border-radius: 2px;
   transform: rotate(45deg) translate(6px, 16px);
-  background-color: black;
+  background-color: #0c1f34;
   position: absolute;
 }
 header .header__back__icon::after {
@@ -142,18 +144,20 @@ header .header__back__icon::after {
   display: block;
   border-radius: 2px;
   transform: rotate(-45deg) translate(-9px, -1px);
-  background-color: black;
+  background-color: #0c1f34;
   position: absolute;
 }
 
 footer {
-  position: sticky;
+  position: fixed;
+  width: 100%;
   bottom: 0;
   height: 65px;
   background-color: #E2F0F1;
   box-shadow: 0 0 24px 12px rgba(0, 0, 0, 0.24);
   z-index: 2;
   user-select: none;
+  transition: background-color 300ms;
 }
 footer progress {
   position: absolute;
@@ -194,13 +198,13 @@ footer .footer__settings img {
 }
 footer .footer__settings > div {
   display: flex;
-  background-image: url("../icons/svg/Adark.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
   width: 26px;
   height: 23px;
 }
-footer .footer__settings.open button {
+footer .footer__settings > div .dark {
+  display: none;
+}
+footer .footer__settings.open button.open {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -219,8 +223,15 @@ footer .footer__settings button {
   border: none;
   display: none;
 }
-footer .footer__settings button.dark-theme {
+footer .footer__settings button.theme {
   background-color: #b4924d;
+}
+footer .footer__settings button.theme * {
+  transition: opacity 100ms;
+}
+footer .footer__settings button.theme > .light {
+  opacity: 0;
+  width: 0;
 }
 footer .footer__speed-toolbar {
   width: 30px;
@@ -348,7 +359,7 @@ footer .footer audio {
   display: block;
   width: 100%;
   cursor: pointer;
-  background-color: #E2F0F1;
+  background-color: #FDFDFD;
   transition: all 50ms;
   font-size: 1.2rem;
   font-weight: bold;
@@ -385,6 +396,65 @@ footer .footer audio {
   height: 100%;
 }
 
+body.dark {
+  color: #e2f0f1;
+}
+body.dark header {
+  background-color: #0c1f34;
+}
+body.dark header .header__menu-btn__burger {
+  background-color: #e2f0f1;
+}
+body.dark header .header__menu-btn__burger.open {
+  background-color: transparent;
+}
+body.dark header .header__menu-btn__burger::before, body.dark header .header__menu-btn__burger::after {
+  background-color: #e2f0f1;
+}
+body.dark header .header__back__icon::before, body.dark header .header__back__icon::after {
+  background-color: #e2f0f1;
+}
+body.dark .main {
+  background-color: #0a101a;
+}
+body.dark .main.disabled {
+  background-color: #232324;
+}
+body.dark footer {
+  background-color: #0c1f34;
+}
+body.dark footer .footer__settings > div .dark {
+  display: unset;
+}
+body.dark footer .footer__settings > div .light {
+  display: none;
+}
+body.dark footer .footer__settings button.theme > .dark {
+  opacity: 0;
+  width: 0;
+}
+body.dark footer .footer__settings button.theme > .light {
+  opacity: 1;
+  width: 100%;
+}
+body.dark footer .footer__more {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(112deg) brightness(103%) contrast(104%);
+}
+body.dark footer .footer__more * {
+  width: 100%;
+  height: 100%;
+}
+body.dark .side-menu {
+  background-color: #0c1f34;
+}
+body.dark .side-menu button {
+  background-color: #1c6981;
+  color: #e2f0f1;
+}
+body.dark .side-menu button:hover, body.dark .side-menu button.active {
+  background-color: #847048;
+}
+
 @font-face {
   font-family: "KFG";
   src: url("../fonts/KFG.ttf");
@@ -402,16 +472,15 @@ footer .footer audio {
 }
 
 body {
-  height: 100vh;
+  color: #0c1f34;
 }
 body.disabled {
   overflow-y: hidden;
 }
 body .main {
   background-color: #FDFDFD;
-  height: 100%;
   text-align: justify;
-  transition: background-color 800ms;
+  transition: background-color 300ms;
 }
 body .main .container {
   padding: 0 20px;
@@ -421,8 +490,8 @@ body .main.disabled {
   user-select: none;
 }
 body .main__content {
-  overflow: hidden;
   height: 100%;
+  padding: 75px 0;
 }
 body .main__content * {
   font-family: "KFG", sans-serif;
@@ -432,6 +501,7 @@ body .main p {
   line-height: 40px;
   letter-spacing: -0.025em;
   font-weight: bold;
+  margin: 0;
 }
 
 /*# sourceMappingURL=main.css.map */

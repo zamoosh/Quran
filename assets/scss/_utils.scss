@@ -1,12 +1,15 @@
-$body-color: #1E1E1E;
-$header-color: #0C1F34;
+$body-color: #0a101a;
+$header-color: #0c1f34;
+$highlight-color: #847048;
+$text-dark: #e2f0f1;
+$button-color: #1c6981;
 
 // light theme
 $body-color-light: #FDFDFD;
 $header-color-light: #E2F0F1;
-$input-background-color-light: #E2F0F1;
-
+$highlight-color-light: #b8dbd9;
 $side-menu-color: rgb(184, 219, 217);
+$text-light: #0c1f34;
 
 *[role='button'] {
     cursor: pointer;
