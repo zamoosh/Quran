@@ -223,7 +223,7 @@ footer .footer__settings button {
   border: none;
   display: none;
 }
-footer .footer__settings button.theme {
+footer .footer__settings button.active {
   background-color: #b4924d;
 }
 footer .footer__settings button.theme * {
@@ -453,6 +453,48 @@ body.dark .side-menu button {
 }
 body.dark .side-menu button:hover, body.dark .side-menu button.active {
   background-color: #847048;
+}
+
+body.sepia {
+  color: #0c1f34;
+}
+body.sepia header {
+  background-color: #f8ebd5;
+}
+body.sepia header .header__menu-btn__burger {
+  background-color: #0c1f34;
+}
+body.sepia header .header__menu-btn__burger.open {
+  background-color: transparent;
+}
+body.sepia header .header__menu-btn__burger::before, body.sepia header .header__menu-btn__burger::after {
+  background-color: #0c1f34;
+}
+body.sepia header .header__back__icon::before, body.sepia header .header__back__icon::after {
+  background-color: #0c1f34;
+}
+body.sepia .main {
+  background-color: #f8ebd5;
+}
+body.sepia footer {
+  background-color: #fff7ea;
+}
+body.sepia footer .footer__settings > div .dark {
+  display: none;
+}
+body.sepia footer .footer__settings > div .light {
+  display: unset;
+}
+body.sepia footer .footer__settings button.theme > .dark {
+  opacity: 1;
+  width: 100%;
+}
+body.sepia footer .footer__more * {
+  width: 100%;
+  height: 100%;
+}
+body.sepia .side-menu {
+  background-color: #fff7ea;
 }
 
 @font-face {
